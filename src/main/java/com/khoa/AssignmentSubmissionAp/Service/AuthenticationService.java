@@ -1,6 +1,5 @@
 package com.khoa.AssignmentSubmissionAp.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,6 +34,7 @@ public class AuthenticationService {
 				.email(request.getEmail())
 				.password(passwordEncoder.encode(request.getPassword()))
 				.role(Role.USER)
+				.cohortStartDate(request.getCohortStartDate())
 				.build();
 		userRepository.save(user);
 		var jwtToken = jwtService.generateToken(user);
